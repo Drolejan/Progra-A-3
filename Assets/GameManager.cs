@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject puntos;
+    public GameObject puntos,pantallaInicial,pantallaGame,pantallaGameOver;
     void Start()
     {
+        
+    }
+
+    public void startGame()
+    {
         StartCoroutine(rutinaPuntos());
+    }
+
+    public void gameOver()
+    {
+        StopAllCoroutines();
     }
 
     public void spawnPoints()
     {
         Vector2 posRandom = new Vector2(Random.Range(-2, 2), Random.Range(-2, 2));
-        Instantiate(puntos,posRandom,Quaternion.identity);
+        GameObject punto = Instantiate(puntos,posRandom,Quaternion.identity);
+        Destroy(punto,3);//Destruir cada 3 segundos
     }
 
     IEnumerator rutinaPuntos()
