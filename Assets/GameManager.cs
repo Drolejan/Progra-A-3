@@ -13,11 +13,22 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         StartCoroutine(rutinaPuntos());
+        pantallaInicial.SetActive(false);//Apagamos pInicial
+        pantallaGame.SetActive(true);//Prendemos pGame
     }
 
     public void gameOver()
     {
         StopAllCoroutines();
+        pantallaGame.SetActive(false);//Apagamos pGame
+        pantallaGameOver.SetActive(true);//Prendemos pGameOver
+    }
+
+    public void resetGame()
+    {
+        StartCoroutine(rutinaPuntos());
+        pantallaGameOver.SetActive(false);//Apagamos pGameOver
+        pantallaGame.SetActive(true);//Prendemos pGame
     }
 
     public void spawnPoints()
