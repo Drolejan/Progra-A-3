@@ -14,13 +14,14 @@ public class playerControl : MonoBehaviour
     float timer;
     baseDatos bdFunctions;
     public GameObject[] objetosPuntos;
+    public float limiteTimer;
     void Start()
     {
-        bdFunctions = GameObject.Find("Objeto BD").GetComponent<baseDatos>();
+        //bdFunctions = GameObject.Find("Objeto BD").GetComponent<baseDatos>();
         playerRB = GetComponent<Rigidbody2D>(); 
         puntos = 0;
-        scorePlayer = GameObject.Find("sp").GetComponent<TextMeshProUGUI>();
-        objetosPuntos = GameObject.FindGameObjectsWithTag("Points");
+        //scorePlayer = GameObject.Find("sp").GetComponent<TextMeshProUGUI>();
+        //objetosPuntos = GameObject.FindGameObjectsWithTag("Points");
     }
     
     void Update()
@@ -34,12 +35,12 @@ public class playerControl : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer > 5.0f)
+        if (timer > limiteTimer)
         {
             Time.timeScale = 0;
-            tablaScores.SetActive(true);
-            bdFunctions.addMyScore(puntos);
-            timer -= 5.0f;
+            //tablaScores.SetActive(true);
+            //bdFunctions.addMyScore(puntos);
+            timer -= limiteTimer;
         }
     }
 
@@ -49,7 +50,7 @@ public class playerControl : MonoBehaviour
         {
             Debug.Log("Sume Puntos");//Sumamos puntos
             puntos++;
-            scorePlayer.text = "Puntos: " + puntos;
+            //scorePlayer.text = "Puntos: " + puntos;
             //Destroy(collision.gameObject);//Destruimos el objeto
             //Desactivamos el objeto
             collision.gameObject.SetActive(false);
