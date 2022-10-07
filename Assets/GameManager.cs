@@ -7,11 +7,12 @@ public class GameManager : MonoBehaviour
     public GameObject puntos,pantallaInicial,pantallaGame,pantallaGameOver;
     void Start()
     {
-        
+        Time.timeScale = 0;//Empezamos el juego en Pausa
     }
 
     public void startGame()
     {
+        Time.timeScale = 1;//Comenzamos el Juego
         StartCoroutine(rutinaPuntos());
         pantallaInicial.SetActive(false);//Apagamos pInicial
         pantallaGame.SetActive(true);//Prendemos pGame
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
+        Time.timeScale = 0;
         StopAllCoroutines();
         pantallaGame.SetActive(false);//Apagamos pGame
         pantallaGameOver.SetActive(true);//Prendemos pGameOver
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void resetGame()
     {
+        Time.timeScale = 1;
         StartCoroutine(rutinaPuntos());
         pantallaGameOver.SetActive(false);//Apagamos pGameOver
         pantallaGame.SetActive(true);//Prendemos pGame
