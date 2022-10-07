@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject puntos,pantallaInicial,pantallaGame,pantallaGameOver;
+    [SerializeField] playerControl funcionesPlayer;
     void Start()
     {
         Time.timeScale = 0;//Empezamos el juego en Pausa
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         StopAllCoroutines();
         pantallaGame.SetActive(false);//Apagamos pGame
-        pantallaGameOver.SetActive(true);//Prendemos pGameOver
+        pantallaGameOver.SetActive(true);//Prendemos pGameOver   
     }
 
     public void resetGame()
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(rutinaPuntos());
         pantallaGameOver.SetActive(false);//Apagamos pGameOver
         pantallaGame.SetActive(true);//Prendemos pGame
+        funcionesPlayer.resetGame();
     }
 
     public void spawnPoints()

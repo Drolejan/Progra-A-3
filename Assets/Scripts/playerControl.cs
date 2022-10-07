@@ -9,19 +9,20 @@ public class playerControl : MonoBehaviour
     Rigidbody2D playerRB;
     public float magnitud;
     [SerializeField]int puntos;
-    TextMeshProUGUI scorePlayer;
-    public GameObject tablaScores;
+    [SerializeField]TextMeshProUGUI scorePlayer;
+    [SerializeField]public GameObject tablaScores;
     float timer;
-    baseDatos bdFunctions;
+    [SerializeField]baseDatos bdFunctions;
     public GameObject[] objetosPuntos;
     public float limiteTimer;
+    
+    [SerializeField] GameManager gm;
     void Start()
     {
         //bdFunctions = GameObject.Find("Objeto BD").GetComponent<baseDatos>();
         playerRB = GetComponent<Rigidbody2D>(); 
         puntos = 0;
         //scorePlayer = GameObject.Find("sp").GetComponent<TextMeshProUGUI>();
-        //objetosPuntos = GameObject.FindGameObjectsWithTag("Points");
     }
     
     void Update()
@@ -41,6 +42,7 @@ public class playerControl : MonoBehaviour
             //tablaScores.SetActive(true);
             //bdFunctions.addMyScore(puntos);
             timer -= limiteTimer;
+            gm.gameOver();//Activamos la funcion game over del GM
         }
     }
 
@@ -50,7 +52,7 @@ public class playerControl : MonoBehaviour
         {
             Debug.Log("Sume Puntos");//Sumamos puntos
             puntos++;
-            //scorePlayer.text = "Puntos: " + puntos;
+            scorePlayer.text = "Puntos: " + puntos;
             //Destroy(collision.gameObject);//Destruimos el objeto
             //Desactivamos el objeto
             collision.gameObject.SetActive(false);
@@ -62,9 +64,10 @@ public class playerControl : MonoBehaviour
         puntos = 0;
         scorePlayer.text = "Puntos: " + puntos;
         //Reseteo puntos
+        objetosPuntos = GameObject.FindGameObjectsWithTag("Points");
         foreach (GameObject op in objetosPuntos)
         {
-            op.SetActive(true);
+            op.SetActive(false);
         }
         //Aqui podriamos colocar el reseteo de la posición del player
     }
