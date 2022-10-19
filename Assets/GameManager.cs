@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(rutinaPuntos());
         pantallaInicial.SetActive(false);//Apagamos pInicial
         pantallaGame.SetActive(true);//Prendemos pGame
+        funcionesPlayer.updateData();
     }
 
     public void gameOver()
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         StopAllCoroutines();
         pantallaGame.SetActive(false);//Apagamos pGame
-        pantallaGameOver.SetActive(true);//Prendemos pGameOver   
+        pantallaGameOver.SetActive(true);//Prendemos pGameOver
+        funcionesPlayer.updateData();
     }
 
     public void resetGame()
@@ -33,6 +35,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(rutinaPuntos());
         pantallaGameOver.SetActive(false);//Apagamos pGameOver
         pantallaGame.SetActive(true);//Prendemos pGame
+        funcionesPlayer.resetGame();
+    }
+
+    public void mainMenu()
+    {
+        pantallaGameOver.SetActive(false);//Apagamos pGameOver
+        pantallaInicial.SetActive(true);//Prendemos pGame
         funcionesPlayer.resetGame();
     }
 
