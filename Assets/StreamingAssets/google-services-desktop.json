@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "331808411600",
+    "firebase_url": "https://juegotboxunity-default-rtdb.firebaseio.com",
+    "project_id": "juegotboxunity",
+    "storage_bucket": "juegotboxunity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331808411600:android:efb804535f843e90e933d5",
+        "android_client_info": {
+          "package_name": "com.alex.mijuegobueno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331808411600-n8q6pf8lr5ga3545i79pkcguuc8b3qr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_CuejqJL7vAaUI9RfPQuJY5WUUfyrQqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331808411600-n8q6pf8lr5ga3545i79pkcguuc8b3qr7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "331808411600-tsahkbslaetsfook0ap878kbugf4mj50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alex.mijuegobueno"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
