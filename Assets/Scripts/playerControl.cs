@@ -18,9 +18,9 @@ public class playerControl : MonoBehaviour
     TextMeshProUGUI mensajeGameOver;
     string user;
 
-    [SerializeField]public GameObject tablaScores;
+    //[SerializeField]public GameObject tablaScores;
     float timer;
-    [SerializeField]baseDatos bdFunctions;
+    //[SerializeField]baseDatos bdFunctions;
     public GameObject[] objetosPuntos;
     public float limiteTimer;
     
@@ -60,8 +60,10 @@ public class playerControl : MonoBehaviour
                 name = usernamePlayer.text, 
                 score = puntos 
             };
-            Debug.Log(currentP);
-            players.Add(currentP);
+            //Una vez creado, debo de convertirlo para BD
+            string playerBD = JsonUtility.ToJson(currentP);
+            Debug.Log(playerBD);
+            players.Add(currentP);//Se agrega a la lista interna
         }
     }
 

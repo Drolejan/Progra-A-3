@@ -70,6 +70,5 @@ public class baseDatos : MonoBehaviour
         //Reiniciar el score
         //Regenerar los puntos
         datosPlayer.resetGame();
-
     }
 }
