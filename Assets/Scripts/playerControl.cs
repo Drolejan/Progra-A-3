@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +30,11 @@ public class playerControl : MonoBehaviour
     //Lista de players
     public List<player> players=new List<player>();
 
+    Transform puntoRespawn;
+
     void Start()
     {
+        puntoRespawn = GameObject.Find("RESPAWN").GetComponent<Transform>();
         //bdFunctions = GameObject.Find("Objeto BD").GetComponent<baseDatos>();
         playerRB = GetComponent<Rigidbody2D>(); 
         puntos = 0;
@@ -64,6 +68,9 @@ public class playerControl : MonoBehaviour
             string playerBD = JsonUtility.ToJson(currentP);
             Debug.Log(playerBD);
             players.Add(currentP);//Se agrega a la lista interna
+            //Codigo para el Respawn
+            transform.position = puntoRespawn.position;
+            playerRB.velocity = Vector2.zero;
         }
     }
 
