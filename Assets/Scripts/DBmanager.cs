@@ -57,6 +57,14 @@ public class DBmanager : MonoBehaviour
         int numRandom = Random.Range(1, 1000);
         writeNewUser(numRandom.ToString(), "hola"+numRandom, "miEmail@gmail.com");
     }
+
+    //Crear funcion para cargar Scores Reales a Firebase
+    int miPlayerId=1;
+    public void uploadData(string datosMiPlayer)
+    {
+        reference.Child("BD_MiJuego").Child(miPlayerId.ToString()).SetRawJsonValueAsync(datosMiPlayer);
+        miPlayerId++;
+    }
 }
 
 public class User

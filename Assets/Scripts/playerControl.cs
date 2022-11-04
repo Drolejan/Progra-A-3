@@ -32,6 +32,8 @@ public class playerControl : MonoBehaviour
 
     Transform puntoRespawn;
 
+    [SerializeField] DBmanager fireDB;//Hago referencia al script de Firebase
+
     void Start()
     {
         puntoRespawn = GameObject.Find("RESPAWN").GetComponent<Transform>();
@@ -71,6 +73,8 @@ public class playerControl : MonoBehaviour
             //Codigo para el Respawn
             transform.position = puntoRespawn.position;
             playerRB.velocity = Vector2.zero;
+            //Agregar codigo para BD Firebase
+            fireDB.uploadData(playerBD);
         }
     }
 
