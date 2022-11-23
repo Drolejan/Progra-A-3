@@ -60,9 +60,9 @@ public class DBmanager : MonoBehaviour
 
     //Crear funcion para cargar Scores Reales a Firebase
     int miPlayerId=1;
-    public void uploadData(string datosMiPlayer)
+    public void uploadData(string idRand,string datosMiPlayer)
     {
-        reference.Child("BD_MiJuego").Child(miPlayerId.ToString()).SetRawJsonValueAsync(datosMiPlayer);
+        reference.Child("BD_MiJuego").Child(idRand).SetRawJsonValueAsync(datosMiPlayer);
         miPlayerId++;
     }
 }

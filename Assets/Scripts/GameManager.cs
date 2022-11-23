@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject puntos,pantallaInicial,pantallaGame,pantallaGameOver;
+    public GameObject puntos,avocados,poisons,pantallaInicial,pantallaGame,pantallaGameOver;
     [SerializeField] playerControl funcionesPlayer;
     void Start()
     {
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;//Comenzamos el Juego
         StartCoroutine(rutinaPuntos());
+        StartCoroutine(rutinaTimePU());
+        StartCoroutine(rutinaEnemies());
         pantallaInicial.SetActive(false);//Apagamos pInicial
         pantallaGame.SetActive(true);//Prendemos pGame
         funcionesPlayer.updateData();
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         StartCoroutine(rutinaPuntos());
+        StartCoroutine(rutinaTimePU());
+        StartCoroutine(rutinaEnemies());
         pantallaGameOver.SetActive(false);//Apagamos pGameOver
         pantallaGame.SetActive(true);//Prendemos pGame
         funcionesPlayer.resetGame();
@@ -50,6 +54,19 @@ public class GameManager : MonoBehaviour
         Vector2 posRandom = new Vector2(Random.Range(-2, 2), Random.Range(-2, 2));
         GameObject punto = Instantiate(puntos,posRandom,Quaternion.identity);
         Destroy(punto,3);//Destruir cada 3 segundos
+    } 
+    public void spawnTimeAvocados()
+    {
+        Vector2 posRandom = new Vector2(Random.Range(-2.5f, 2.5f), Random.Range(-2.5f, 2.5f));
+        GameObject punto = Instantiate(avocados,posRandom,Quaternion.identity);
+        Destroy(punto,2.5f);//Destruir cada 2 segundos
+    }
+
+    public void spawnPoison()
+    {
+        Vector2 posRandom = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+        GameObject punto = Instantiate(poisons, posRandom, Quaternion.identity);
+        Destroy(punto, 1.5f);//Destruir cada 2 segundos
     }
 
     IEnumerator rutinaPuntos()
@@ -58,6 +75,24 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             spawnPoints();
+        }
+    }
+    
+    IEnumerator rutinaTimePU()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            spawnTimeAvocados();
+        }
+    }
+
+    IEnumerator rutinaEnemies()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            spawnPoison();
         }
     }
 }
