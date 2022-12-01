@@ -61,6 +61,7 @@ public class playerControl : MonoBehaviour
             }
         }
         */
+        
         textoTiros.text = "TIROS: " + shots.ToString();
         textoTimer.text = "TIME: "+Mathf.RoundToInt(limiteTimer);
         limiteTimer -= Time.deltaTime;
@@ -137,9 +138,10 @@ public class playerControl : MonoBehaviour
         //Aqui podriamos colocar el reseteo de la posición del player
     }
 
+    //Al dar clic o tocar el objeto, se ejecuta esta función 
     private void OnMouseDown()
     {
-            if (shots > 0 && Time.timeScale == 1)
+        if (shots > 0 && Time.timeScale == 1)
             {
                 float rx = Random.Range(-5, 5);
                 float ry = Random.Range(-5, 5);
