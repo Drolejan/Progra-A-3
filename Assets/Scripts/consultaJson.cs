@@ -8,8 +8,8 @@ public class consultaJson : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(GetData());
-        //StartCoroutine(GetWeather());
+        //StartCoroutine(GetData());
+        StartCoroutine(GetWeather());
     }
 
     IEnumerator GetData()
@@ -28,9 +28,30 @@ public class consultaJson : MonoBehaviour
         }
     }
 
-    /*
-    //private int actualWeather;
-    //[SerializeField] DigitalRuby.RainMaker.RainScript2D rainMaker;
+    IEnumerator GetWeather()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("api.openweathermap.org/data/2.5/weather?q=monterrey,mx&APPID=0f4544eec3ac54eba18345f13680e80b");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(www.error);
+            actualWeather = 800;
+        }
+        else
+        {
+            JsonData jsonData = JsonMapper.ToObject(www.downloadHandler.text);
+            Debug.Log(jsonData);
+            actualWeather = (int)jsonData["weather"][0]["id"];
+        }
+
+        Debug.Log(actualWeather);
+        WeatherChanger();//Este aun no lo tienen
+        StopCoroutine(GetWeather());
+    }
+
+    private int actualWeather;
+    [SerializeField] DigitalRuby.RainMaker.RainScript2D rainMaker;
     private void WeatherChanger()
     {
         if (actualWeather >= 200 && actualWeather < 300)
@@ -70,26 +91,7 @@ public class consultaJson : MonoBehaviour
         }
     }
 
-    IEnumerator GetWeather()
-    {
-        UnityWebRequest www = UnityWebRequest.Get("api.openweathermap.org/data/2.5/weather?q=bogota&appid=9fc8072b0267bce57438774724d0f689");
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError(www.error);
-            actualWeather = 800;
-        }
-        else
-        {
-            JsonData jsonData = JsonMapper.ToObject(www.downloadHandler.text);
-            actualWeather = (int)jsonData["weather"][0]["id"];
-        }
-
-        Debug.Log(actualWeather);
-        WeatherChanger();
-        StopCoroutine(GetWeather());
-    }
-    */
+    
+    
 
 }
