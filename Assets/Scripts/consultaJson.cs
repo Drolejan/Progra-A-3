@@ -2,14 +2,14 @@ using LitJson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+using UnityEngine.Networking;//Esta es para hacer WebRequest
 
 public class consultaJson : MonoBehaviour
 {
     void Start()
     {
-        //StartCoroutine(GetWeather());
         StartCoroutine(GetData());
+        //StartCoroutine(GetWeather());
     }
 
     IEnumerator GetData()
