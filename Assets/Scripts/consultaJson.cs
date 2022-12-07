@@ -6,8 +6,10 @@ using UnityEngine.Networking;//Esta es para hacer WebRequest
 
 public class consultaJson : MonoBehaviour
 {
+    string miLink;
     void Start()
     {
+        miLink = "Aqui ponen su link";
         //StartCoroutine(GetData());
         StartCoroutine(GetWeather());
     }
@@ -15,7 +17,7 @@ public class consultaJson : MonoBehaviour
     IEnumerator GetData()
     {
         //UnityWebRequest www = UnityWebRequest.Get("InsertarLinkConsulta");
-        UnityWebRequest www = UnityWebRequest.Get("api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=0f4544eec3ac54eba18345f13680e80b");
+        UnityWebRequest www = UnityWebRequest.Get(miLink);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
@@ -30,7 +32,7 @@ public class consultaJson : MonoBehaviour
 
     IEnumerator GetWeather()
     {
-        UnityWebRequest www = UnityWebRequest.Get("api.openweathermap.org/data/2.5/weather?q=monterrey,mx&APPID=0f4544eec3ac54eba18345f13680e80b");
+        UnityWebRequest www = UnityWebRequest.Get(miLink);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
