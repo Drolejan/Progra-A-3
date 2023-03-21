@@ -9,15 +9,15 @@ public class consultaJson : MonoBehaviour
     string miLink;
     void Start()
     {
-        miLink = "Aqui ponen su link";
-        //StartCoroutine(GetData());
+        miLink = "api.openweathermap.org/data/2.5/weather?q=alaska,us&APPID=0f4544eec3ac54eba18345f13680e80b";
+        StartCoroutine(GetData());
         StartCoroutine(GetWeather());
     }
 
     IEnumerator GetData()
     {
         //UnityWebRequest www = UnityWebRequest.Get("InsertarLinkConsulta");
-        UnityWebRequest www = UnityWebRequest.Get(miLink);
+        UnityWebRequest www = UnityWebRequest.Get("pokeapi.co/api/v2/pokemon-form/132/");
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
@@ -71,12 +71,12 @@ public class consultaJson : MonoBehaviour
             //lluvia
             rainMaker.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity += 0.55f;
         }
-        else if (actualWeather >= 500 && actualWeather < 600)
+        else if (actualWeather >= 500 && actualWeather < 650)
         {
             //lluvia
             rainMaker.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity += 0.7f;
         }
-        else if (actualWeather >= 700 && actualWeather < 800)
+        else if (actualWeather >= 650 && actualWeather < 800)
         {
             //niebla
             rainMaker.RainIntensity += 0.1f;
